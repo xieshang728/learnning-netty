@@ -12,6 +12,10 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<HttpObject> {
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, HttpObject httpObject) throws Exception {
 
         if(httpObject instanceof HttpRequest) {
+            System.out.println("executed read0");
+            HttpRequest request = (HttpRequest) httpObject;
+            System.out.println("method: "+request.method().name());
+
             ByteBuf byteBuf = Unpooled.copiedBuffer("hello world", CharsetUtil.UTF_8);
             FullHttpResponse response = new DefaultFullHttpResponse(
                     HttpVersion.HTTP_1_1,
