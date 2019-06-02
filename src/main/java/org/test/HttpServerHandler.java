@@ -25,6 +25,7 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<HttpObject> {
             response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain");
             response.headers().set(HttpHeaderNames.CONTENT_LENGTH, byteBuf.readableBytes());
             channelHandlerContext.writeAndFlush(response);
+            channelHandlerContext.channel().close();
         }
     }
 
