@@ -27,4 +27,28 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<HttpObject> {
             channelHandlerContext.writeAndFlush(response);
         }
     }
+
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        System.out.println("channel active");
+        super.channelActive(ctx);
+    }
+
+    @Override
+    public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
+        System.out.println("channel registered");
+        super.channelRegistered(ctx);
+    }
+
+    @Override
+    public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
+        System.out.println("channel unregistered");
+        super.channelUnregistered(ctx);
+    }
+
+    @Override
+    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        System.out.println("channel unactive");
+        super.channelInactive(ctx);
+    }
 }
