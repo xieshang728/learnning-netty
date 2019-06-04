@@ -7,14 +7,25 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.*;
 import io.netty.util.CharsetUtil;
 
+import java.net.URI;
+
 public class HttpServerHandler extends SimpleChannelInboundHandler<HttpObject> {
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, HttpObject httpObject) throws Exception {
 
+        System.out.println("httpObject :{}"+httpObject.getClass());
+        System.out.println("address: {}"+channelHandlerContext.channel().remoteAddress());
+        Thread.sleep(8000);
         if(httpObject instanceof HttpRequest) {
             System.out.println("executed read0");
             HttpRequest request = (HttpRequest) httpObject;
             System.out.println("method: "+request.method().name());
+
+            URI uri = new URI(request.uri());
+            if("favicon.ico".equals(uri.getPath())){
+                System.out.println("favicon.ico");
+                return;
+            }
 
             ByteBuf byteBuf = Unpooled.copiedBuffer("hello world", CharsetUtil.UTF_8);
             FullHttpResponse response = new DefaultFullHttpResponse(
