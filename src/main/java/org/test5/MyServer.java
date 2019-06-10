@@ -1,4 +1,4 @@
-package org.test4;
+package org.test5;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -7,9 +7,9 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
-import org.test3.MyChatServerInitializer;
+import org.test4.MyServerInitializer;
 
-public class MyChatServer {
+public class MyServer {
     public static void main(String[] args) throws Exception{
         EventLoopGroup boss = new NioEventLoopGroup();
         EventLoopGroup work = new NioEventLoopGroup();
@@ -17,7 +17,7 @@ public class MyChatServer {
             ServerBootstrap bootstrap = new ServerBootstrap();
             bootstrap.group(boss, work).channel(NioServerSocketChannel.class)
                     .handler(new LoggingHandler(LogLevel.INFO))
-                    .childHandler(new MyChatServerInitializer());
+                    .childHandler(null);
 
             ChannelFuture channelFuture = bootstrap.bind(8899).sync();
             channelFuture.channel().closeFuture().sync();
