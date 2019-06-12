@@ -19,4 +19,5 @@ public class MyChatServerInitializer extends ChannelInitializer<SocketChannel> {
         pipeline.addLast("decoder",new StringDecoder(CharsetUtil.UTF_8));
         pipeline.addLast("handler",new MyChatServerHandler());
     }
+
 }
