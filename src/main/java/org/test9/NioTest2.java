@@ -2,7 +2,6 @@ package org.test9;
 
 import java.io.FileInputStream;
 import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
 import java.nio.channels.FileChannel;
 
 public class NioTest2 {
